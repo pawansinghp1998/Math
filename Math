@@ -1,0 +1,23 @@
+Q.1 Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
+
+ class Solution {
+    public int addDigits(int num) {
+
+        int a=0;
+        a=sum(num);
+       while(a>9)               //Checking if further operation is required or not 
+       {
+    	  a=sum(a); 
+       }
+       return a;
+    }
+ int sum (int num)
+{
+	int s=0,r=0;                                   // Calculating sum of digit of a number
+	for(int i=num;i>0;i=i/10)
+	{
+		r=i%10;
+		s=s+r;
+	}
+	return s;
+}}
