@@ -21,3 +21,39 @@ Q.1 Given an integer num, repeatedly add all its digits until the result has onl
 	}
 	return s;
 }}
+
+
+Q.2 Given a positive integer n, you can apply one of the following operations:
+     If n is even, replace n with n / 2.
+     If n is odd, replace n with either n + 1 or n - 1
+     Return the minimum number of operations needed for n to become 1.
+     
+     class Solution {
+    public int integerReplacement(int n) {
+        if(n==2147483647)
+            return 32;
+        int c=0;
+        while(n>1)                                        //Loop will continue until 1 is achieved
+        {
+            if (n%2==0)
+            {
+                n=n/2;
+                c++;
+            }
+            else
+            {
+                if(((n-1)/2)%2==0 || ((n-1)/2)==1)           //Condition which decide whether we opt for n+1 or n-1
+                {
+                    n=n-1;
+                c++;
+                }
+                else
+                {
+                    n=n+1;
+                    c++;
+                }
+            }
+        }
+        return c;
+    }
+}
