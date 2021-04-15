@@ -57,3 +57,36 @@ Q.2 Given a positive integer n, you can apply one of the following operations:
         return c;
     }
 }
+
+Q.3.Given an integer n, return the nth ugly number.
+
+Ugly number is a positive number whose prime factors only include 2, 3, and/or 5.
+
+class Solution {
+    public int nthUglyNumber(int n) {
+        int[][] dp = new int[3][n + 1];
+        int result = 1;
+        int a = 0;
+        int b = 0;
+        int c = 0;
+
+        for (int i = 0; i < n - 1; i++) {
+            dp[0][i] = result * 2;                                  \\ 2 4 6 8 10 12 14
+            dp[1][i] = result * 3;                                  \\ 3 6 9 12 15 18 24
+            dp[2][i] = result * 5;                                   \\5 10 15 20 25 30 40
+
+            result = Math.min(Math.min(dp[0][a], dp[1][b]), dp[2][c]);   \\1 2 3 4 5 6 8 9 10 12 15 16 18 20
+
+            if (result == dp[0][a])
+                a++;
+
+            if (result == dp[1][b])
+                b++;
+
+            if (result == dp[2][c])
+                c++;
+        }
+        return result;
+
+    }
+}
