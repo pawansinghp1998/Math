@@ -90,3 +90,43 @@ class Solution {
 
     }
 }
+
+Q.4.(447).You are given n points in the plane that are all distinct, where points[i] = [xi, yi]. A boomerang is a tuple of points (i, j, k) such that the distance
+between i and j equals the distance between i and k (the order of the tuple matters).Return the number of boomerangs.
+
+Input: points = [[0,0],[1,0],[2,0]]
+Output: 2
+Explanation: The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]].
+
+Input: points = [[1,1],[2,2],[3,3]]
+Output: 2
+
+Input: points = [[1,1]]
+Output: 0
+ 
+ class Solution {
+    public int numberOfBoomerangs(int[][] points) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        for (int i = 0; i < points.length; i++) {
+        
+            map.clear();
+            for (int j = 0; j < points.length; j++) {
+            
+                if (i == j) {
+                    continue;                                                                //different points
+                }
+        
+                int distance = (points[j][0] - points[i][0])*(points[j][0] - points[i][0])     //calculating the square of distance
+                    + (points[j][1] - points[i][1])*(points[j][1] - points[i][1]);
+        
+                int size = map.getOrDefault(distance, 0);               //getting number od same distance mapped if none is mapped return 0
+        
+                count =count+ (size*2);                            //Another way of calculating total number of permutation
+                size++;
+                map.put(distance, size);
+            }
+        }
+        return count;
+    }
+}
